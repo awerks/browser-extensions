@@ -47,14 +47,14 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     statusAllButton.addEventListener('click', () => {
         const allCards = document.querySelectorAll('.extension-card');
-        allCards.forEach(card => card.style.display = 'block');
+        allCards.forEach(card => card.style.display = 'flex');
     }
     );
     statusActiveButton.addEventListener('click', () => {
         const allCards = document.querySelectorAll('.extension-card');
         allCards.forEach(card => {
             if (card.querySelector('input[type="checkbox"]').checked) {
-                card.style.display = 'block';
+                card.style.display = 'flex';
             } else {
                 card.style.display = 'none';
             }
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         const allCards = document.querySelectorAll('.extension-card');
         allCards.forEach(card => {
             if (!card.querySelector('input[type="checkbox"]').checked) {
-                card.style.display = 'block';
+                card.style.display = 'flex';
             } else {
                 card.style.display = 'none';
             }

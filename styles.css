@@ -97,7 +97,7 @@
 @layer base {
     @font-face {
         font-family: 'NotoSans';
-        src: url('assets/fonts/NotoSans-VariableFont_wdth,wght.woff2') format('woff2-variations');
+        src: url('assets/fonts/NotoSans-VariableFont_wdth\,wght.ttf') format('truetype');
         font-weight: 100 900;
         font-style: normal;
         font-display: swap;
@@ -125,7 +125,7 @@
 
         /* Typography */
         --font-size-body: 16px;
-        --font-family-base: 'Noto Sans', sans-serif;
+        --font-family-base: 'NotoSans';
         --font-weight-regular: 400;
         --font-weight-medium: 500;
         --font-weight-bold: 700;
@@ -260,8 +260,8 @@
 
     .card__header {
         display: flex;
+        font-size: 0.9rem;
         gap: 0.875rem;
-        font-size: .875rem;
     }
 
     .card__header h2 {
