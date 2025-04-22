@@ -1,0 +1,420 @@
+@layer reset, base, components, utilities;
+
+@layer reset {
+
+    /* Box sizing rules */
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    /* Prevent font size inflation */
+    html {
+        -moz-text-size-adjust: none;
+        -webkit-text-size-adjust: none;
+        text-size-adjust: none;
+    }
+
+    /* Remove default margin in favour of better control in authored CSS */
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    figure,
+    blockquote,
+    dl,
+    dd {
+        margin: 0;
+    }
+
+    /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+    ul[role='list'],
+    ol[role='list'] {
+        list-style: none;
+    }
+
+    /* Set core body defaults */
+    body {
+        min-height: 100vh;
+        line-height: 1.5;
+    }
+
+    /* Set shorter line heights on headings and interactive elements */
+    h1,
+    h2,
+    h3,
+    h4,
+    button,
+    input,
+    label {
+        line-height: 1.1;
+    }
+
+    /* Balance text wrapping on headings */
+    /* h1,
+    h2,
+    h3,
+    h4 {
+        text-wrap: balance;
+    } */
+
+    /* A elements that don't have a class get default styles */
+    a:not([class]) {
+        text-decoration-skip-ink: auto;
+        color: currentColor;
+    }
+
+    /* Make images easier to work with */
+    img,
+    picture {
+        max-width: 100%;
+        display: block;
+    }
+
+    /* Inherit fonts for inputs and buttons */
+    input,
+    button,
+    textarea,
+    select {
+        font-family: inherit;
+        font-size: inherit;
+    }
+
+    /* Make sure textareas without a rows attribute are not tiny */
+    textarea:not([rows]) {
+        min-height: 10em;
+    }
+
+    /* Anything that has been anchored to should have extra scroll margin */
+    :target {
+        scroll-margin-block: 5ex;
+    }
+}
+
+@layer base {
+    @font-face {
+        font-family: 'NotoSans';
+        src: url('assets/fonts/NotoSans-VariableFont_wdth,wght.woff2') format('woff2-variations');
+        font-weight: 100 900;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    :root {
+        /* Neutral Palette */
+        --neutral-900: hsl(227, 75%, 14%);
+        --neutral-800: hsl(226, 25%, 17%);
+        --neutral-700: hsl(225, 23%, 24%);
+        --neutral-600: hsl(226, 11%, 37%);
+        --neutral-300: hsl(0, 0%, 78%);
+        --neutral-200: hsl(217, 61%, 90%);
+        --neutral-100: hsl(0, 0%, 93%);
+        --neutral-0: hsl(200, 60%, 99%);
+
+        /* Red Palette */
+        --red-400: hsl(3, 86%, 64%);
+        --red-500: hsl(3, 71%, 56%);
+        --red-700: hsl(3, 77%, 44%);
+
+        /* Gradient (light) */
+        --gradient-light: linear-gradient(180deg, #EBF2FC 0%, #EEF8F9 100%);
+        --gradient-dark: linear-gradient(180deg, #040918 0%, #091540 100%);
+
+        /* Typography */
+        --font-size-body: 16px;
+        --font-family-base: 'Noto Sans', sans-serif;
+        --font-weight-regular: 400;
+        --font-weight-medium: 500;
+        --font-weight-bold: 700;
+
+        /* Transition */
+        --transition-duration: 0.4s;
+        --transition-timing: ease-in-out;
+    }
+
+    :root[data-theme="dark"] {
+
+        --neutral-900: hsl(0, 0%, 100%);
+        --neutral-800: hsl(0, 0%, 93%);
+        --neutral-700: hsl(0, 0%, 85%);
+        --neutral-600: hsl(0, 0%, 70%);
+        --neutral-300: hsl(0, 0%, 50%);
+        --neutral-200: hsl(0, 0%, 30%);
+        --neutral-100: hsl(0, 0%, 20%);
+        --neutral-0: hsl(226, 25%, 17%);
+
+        /* Gradient (dark) */
+        --gradient-light: linear-gradient(180deg, #040918 0%, #091540 100%);
+    }
+
+    body {
+        font-family: var(--font-family-base);
+        font-size: var(--font-size-body);
+        color: var(--neutral-900);
+        background-image: var(--gradient-light);
+        transition: background-color var(--transition-duration) var(--transition-timing),
+            color var(--transition-duration) var(--transition-timing);
+        padding: 1rem;
+        max-width: 70rem;
+        margin-inline: auto;
+
+    }
+}
+
+@layer components {
+    nav {
+        background-color: var(--neutral-0);
+        padding: 1em;
+        border-radius: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .extensions-list {
+        margin-block: 2rem;
+    }
+
+    .extensions-list h1 {
+        font-size: 1.875rem;
+    }
+
+    .theme-toggle {
+        width: 2.5rem;
+        height: 2.5rem;
+        border: none;
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 60%;
+        cursor: pointer;
+        border-radius: 0.5rem;
+        transition: background-color var(--transition-duration) var(--transition-timing);
+        background-image: url('assets/images/icon-moon.svg');
+    }
+
+    .theme-toggle.dark {
+        background-image: url('assets/images/icon-sun.svg');
+    }
+
+    .theme-toggle.animate {
+        animation: spin var(--transition-duration) var(--transition-timing) forwards;
+    }
+
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* Button */
+    .btn {
+        padding: 0.75em 1.125em;
+        border-radius: 100vw;
+        font-size: var(--font-size-body);
+        font-weight: var(--font-weight-medium);
+        text-align: center;
+        color: var(--neutral-800);
+        background-color: var(--neutral-0);
+        transition: all 200ms ease-in;
+        border: none;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-right: 0.5em;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        color: var(--neutral-300);
+    }
+
+    .btn.active:hover {
+        background-color: var(--red-500);
+        color: var(--neutral-100);
+    }
+
+    .remove-btn {
+        box-shadow: none;
+        padding: 0.5em 1.125em;
+        font-size: calc(var(--font-size-body) - 1px);
+        border: 1px solid var(--neutral-200);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn--secondary {
+        background-color: var(--neutral-200);
+        color: var(--neutral-900);
+    }
+
+    .btn--secondary:hover {
+        background-color: var(--neutral-300);
+    }
+
+    .btn:focus-visible {
+        outline: 2px solid var(--red-400);
+        outline-offset: 2px;
+    }
+
+    .active {
+        background-color: var(--red-700);
+        color: var(--neutral-100);
+    }
+
+    .extension-card {
+        background-color: var(--neutral-0);
+        padding: 1rem;
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .card__header {
+        display: flex;
+        gap: 0.875rem;
+        font-size: .875rem;
+    }
+
+    .card__header h2 {
+        font-size: 1.125rem;
+
+        margin-bottom: 0.5rem;
+    }
+
+    .card__icon {
+        flex-shrink: 0;
+        max-width: 60px;
+    }
+
+    .card__content {
+        margin-bottom: 2.5rem;
+    }
+
+    .extension-card p {
+        color: var(--neutral-600);
+    }
+
+    @media screen and (max-width: 550px) {
+        .extensions-list {
+            flex-direction: column;
+        }
+
+        .status-buttons {
+            margin-top: 1rem;
+        }
+    }
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 40px;
+        height: 20px;
+    }
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 14px;
+        width: 14px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: .4s;
+    }
+
+    input:checked+.slider {
+        background-color: var(--red-700);
+    }
+
+    input:focus-visible+.slider {
+        outline: 3px solid var(--red-400);
+        outline-offset: 1px;
+    }
+
+    input:checked+.slider:before {
+        transform: translateX(20px);
+    }
+
+    .slider.round {
+        border-radius: 10px;
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
+}
+
+/* Dark‑mode overrides: swap usage, but keep tokens unchanged */
+
+
+@layer utilities {
+
+    /* Flexbox utilities */
+    .flex {
+        display: flex;
+    }
+
+    .flex-row {
+        flex-direction: row;
+    }
+
+    .flex-column {
+        flex-direction: column;
+    }
+
+    .flex-center {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .flex-wrap {
+        flex-wrap: wrap;
+    }
+
+    .flex-space-between {
+        justify-content: space-between;
+    }
+
+    .align-items-center {
+        align-items: center;
+    }
+
+    .grid {
+        display: grid;
+    }
+
+    .grid-cols-3 {
+        gap: 1rem;
+        --grid-min: 20rem;
+        --grid-max: 1fr;
+        /* 
+            auto-fill as many columns as will fit,
+            each column ≥ min(var(--grid-min), 100%) and ≤ var(--grid-max)
+          */
+        grid-template-columns:
+            repeat(auto-fill,
+                minmax(min(var(--grid-min), 100%),
+                    /* never smaller than --grid-min, but also never wider than container */
+                    var(--grid-max)));
+    }
+
+
+}
