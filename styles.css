@@ -212,12 +212,10 @@
     .btn {
         padding: 0.75em 1.125em;
         border-radius: 100vw;
-        font-size: var(--font-size-body);
-        font-weight: var(--font-weight-medium);
         text-align: center;
         color: var(--neutral-800);
         background-color: var(--neutral-0);
-        transition: all 200ms ease-in;
+        transition: color 200ms ease-in;
         border: none;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         margin-right: 0.5em;
@@ -239,15 +237,6 @@
         font-size: calc(var(--font-size-body) - 1px);
         border: 1px solid var(--neutral-200);
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .btn--secondary {
-        background-color: var(--neutral-200);
-        color: var(--neutral-900);
-    }
-
-    .btn--secondary:hover {
-        background-color: var(--neutral-300);
     }
 
     .btn:focus-visible {
@@ -325,7 +314,7 @@
         right: 0;
         bottom: 0;
         background-color: #ccc;
-        transition: .4s;
+        transition: transform .4s, background-color .4s;
     }
 
     .slider:before {
@@ -336,7 +325,7 @@
         left: 3px;
         bottom: 3px;
         background-color: white;
-        transition: .4s;
+        transition: transform .4s, background-color .4s;
     }
 
     input:checked+.slider {

@@ -40,7 +40,38 @@ document.addEventListener("DOMContentLoaded", async function () {
         })
     }
     );
+    const statusAllButton = document.getElementById('status-all');
+    const statusActiveButton = document.getElementById('status-active');
+    const statusInactiveButton = document.getElementById('status-inactive');
 
+
+    statusAllButton.addEventListener('click', () => {
+        const allCards = document.querySelectorAll('.extension-card');
+        allCards.forEach(card => card.style.display = 'block');
+    }
+    );
+    statusActiveButton.addEventListener('click', () => {
+        const allCards = document.querySelectorAll('.extension-card');
+        allCards.forEach(card => {
+            if (card.querySelector('input[type="checkbox"]').checked) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+    );
+    statusInactiveButton.addEventListener('click', () => {
+        const allCards = document.querySelectorAll('.extension-card');
+        allCards.forEach(card => {
+            if (!card.querySelector('input[type="checkbox"]').checked) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+    );
 
     await fetchAndDisplayData();
 });
@@ -63,7 +94,7 @@ async function fetchAndDisplayData() {
                 </div>
             </div>
             <div class='card__buttons flex flex-space-between align-items-center'>
-                <button class='btn remove-btn'>Remove</button>
+                <button onclick='removeExtensionCard(event)' class='btn remove-btn'>Remove</button>
                 <label class="switch">
                     <input type="checkbox" ${item.isActive ? 'checked' : ''} />
                     <span class="slider round"></span>
@@ -72,4 +103,16 @@ async function fetchAndDisplayData() {
         `;
         grid.appendChild(div);
     }
+}
+function removeExtensionCard(event) {
+    const card = event.target.closest('.extension-card');
+    card.remove();
+    const grid = document.getElementById("grid");
+    if (grid.children.length === 0) {
+        const noDataMessage = document.createElement("div");
+        noDataMessage.className = "no-data-message";
+        noDataMessage.innerHTML = "<p>No extensions installed.</p>";
+        grid.appendChild(noDataMessage);
+    }
+
 }
