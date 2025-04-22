@@ -25,16 +25,14 @@ Users should be able to:
 -   View the optimal layout for the interface depending on their device's screen size
 -   See hover and focus states for all interactive elements on the page
 
-### Screenshot
+### Screenshots
 
 <div style="display: flex; gap: 1rem; justify-content: center; align-items: flex-start;">
   <figure>
     <img src="screenshots/light.png" alt="Light mode" width="400">
-    <figcaption>Light mode</figcaption>
   </figure>
   <figure>
     <img src="screenshots/dark.png" alt="Dark mode" width="400">
-    <figcaption>Dark mode</figcaption>
   </figure>
 </div>
 
