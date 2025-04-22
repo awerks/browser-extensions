@@ -2,6 +2,8 @@
 
 This is a solution to the [Browser extensions manager UI challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/browser-extension-manager-ui-yNZnOfsMAp).
 
+## [Live Site URL](https://browser-extensions-mentor.netlify.app/)
+
 ## Table of contents
 
 -   [Overview](#overview)
@@ -36,10 +38,6 @@ Users should be able to:
   </figure>
 </div>
 
-<!-- ### Links
-
--   Solution URL: [Add solution URL here](https://your-solution-url.com)
--   Live Site URL: [Add live site URL here](https://your-live-site-url.com) -->
 
 ## Built with
 
